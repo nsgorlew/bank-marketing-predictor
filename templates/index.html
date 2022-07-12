@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block content %}
+<html>
+    <head>
+        <style>
+            h1{
+                font-family: "32px "Lucida Grande", Helvetica, Arial, sans-serif";  
+                font-size: 1rem;
+                color: rgb(68, 67, 67);
+                text-align: center;
+            }
+            textarea {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            div {
+                text-align: center;
+            }
+            p {
+                text-align: center;
+                color: blue;
+            }
+        </style>
+    </head>
+    <h2>Will the bank customer subscribe?</h2>
+    <h4>Enter customer information: </h4>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <span>{{message}}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div>
+        <form id="features_form" action="/predict" method="POST">
+            <div>
+                <label for="age">Age: </label>
+                <input type="number" id="age" name="age">
+                <br>
+                <label for="job_id">Job:</label>
+                <select id="job_id" name="job_id" action="/" method="GET">
+                    {% for job in features['job'] %}
+                        <option value="{{job}}" SELECTED>{{job}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="marital">Marital Status:</label>
+                <select id="marital" name="marital" action="/" method="GET">
+                    {% for marital in features['marital'] %}
+                        <option value="{{marital}}" SELECTED>{{marital}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="education">Education:</label>
+                <select id="education" name="education" action="/" method="GET">
+                    {% for education in features['education'] %}
+                        <option value="{{education}}" SELECTED>{{education}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="default">Default:</label>
+                <select id="default" name="default" action="/" method="GET">
+                    {% for default in features['default'] %}
+                        <option value="{{default}}" SELECTED>{{default}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="balance">Balance: </label>
+                <input type="number" id="balance" name="balance">
+                <br>
+                <label for="housing">Housing:</label>
+                <select id="housing" name="housing" action="/" method="GET">
+                    {% for housing in features['housing'] %}
+                        <option value="{{housing}}" SELECTED>{{housing}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="loan">Loan:</label>
+                <select id="loan" name="loan" action="/" method="GET">
+                    {% for loan in features['loan'] %}
+                        <option value="{{loan}}" SELECTED>{{loan}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="contact">Contact:</label>
+                <select id="contact" name="contact" action="/" method="GET">
+                    {% for contact in features['contact'] %}
+                        <option value="{{contact}}" SELECTED>{{contact}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="day">Day: </label>
+                <input type="number" id="day" name="day">
+                <br>
+                <label for="month">Month:</label>
+                <select id="month" name="month" action="/" method="GET">
+                    {% for month in features['month'] %}
+                        <option value="{{month}}" SELECTED>{{month}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label for="duration">Duration: </label>
+                <input type="number" id="duration" name="duration">
+                <br>
+                <label for="campaign">Campaign: </label>
+                <input type="number" id="campaign" name="campaign">
+                <br>
+                <label for="poutcome">Prob Outcome:</label>
+                <select id="poutcome" name="poutcome" action="/" method="GET">
+                    {% for poutcome in features['poutcome'] %}
+                        <option value="{{poutcome}}" SELECTED>{{poutcome}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mb-3" value="Submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
